@@ -1,0 +1,273 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="AirAtlantiqueModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Employes">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nom" Type="nchar" MaxLength="20" />
+          <Property Name="prenom" Type="nchar" MaxLength="20" />
+          <Property Name="salaire" Type="int" />
+          <Property Name="dateNaissance" Type="date" />
+          <Property Name="typeMetier" Type="nchar" MaxLength="20" />
+          <Property Name="Metier" Type="nchar" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="Employes_Sessions">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idEmploye" Type="int" />
+          <Property Name="idSession" Type="int" />
+        </EntityType>
+        <EntityType Name="Formations">
+          <Key>
+            <PropertyRef Name="idFormation" />
+          </Key>
+          <Property Name="idFormation" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nom" Type="nchar" MaxLength="45" />
+        </EntityType>
+        <EntityType Name="Sessions">
+          <Key>
+            <PropertyRef Name="idSession" />
+          </Key>
+          <Property Name="idSession" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nom" Type="nchar" MaxLength="10" Nullable="false" />
+          <Property Name="date" Type="date" Nullable="false" />
+          <Property Name="duree" Type="int" Nullable="false" />
+          <Property Name="nbPlace" Type="int" />
+          <Property Name="idFormation" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Employes_Sessions_Employes">
+          <End Role="Employes" Type="Self.Employes" Multiplicity="0..1" />
+          <End Role="Employes_Sessions" Type="Self.Employes_Sessions" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employes">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Employes_Sessions">
+              <PropertyRef Name="idEmploye" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Employes_Sessions_Sessions">
+          <End Role="Sessions" Type="Self.Sessions" Multiplicity="0..1" />
+          <End Role="Employes_Sessions" Type="Self.Employes_Sessions" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sessions">
+              <PropertyRef Name="idSession" />
+            </Principal>
+            <Dependent Role="Employes_Sessions">
+              <PropertyRef Name="idSession" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Sessions_Formations">
+          <End Role="Formations" Type="Self.Formations" Multiplicity="1" />
+          <End Role="Sessions" Type="Self.Sessions" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Formations">
+              <PropertyRef Name="idFormation" />
+            </Principal>
+            <Dependent Role="Sessions">
+              <PropertyRef Name="idFormation" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="AirAtlantiqueModelStoreContainer">
+          <EntitySet Name="Employes" EntityType="Self.Employes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Employes_Sessions" EntityType="Self.Employes_Sessions" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Formations" EntityType="Self.Formations" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Sessions" EntityType="Self.Sessions" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Employes_Sessions_Employes" Association="Self.FK_Employes_Sessions_Employes">
+            <End Role="Employes" EntitySet="Employes" />
+            <End Role="Employes_Sessions" EntitySet="Employes_Sessions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Employes_Sessions_Sessions" Association="Self.FK_Employes_Sessions_Sessions">
+            <End Role="Sessions" EntitySet="Sessions" />
+            <End Role="Employes_Sessions" EntitySet="Employes_Sessions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Sessions_Formations" Association="Self.FK_Sessions_Formations">
+            <End Role="Formations" EntitySet="Formations" />
+            <End Role="Sessions" EntitySet="Sessions" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="AirAtlantiqueModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="AirAtlantiqueDBContext" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Formations" EntityType="AirAtlantiqueModel.Formation" />
+          <EntitySet Name="Sessions" EntityType="AirAtlantiqueModel.Session" />
+          <EntitySet Name="Employes" EntityType="AirAtlantiqueModel.Employe" />
+          <EntitySet Name="Employes_Sessions" EntityType="AirAtlantiqueModel.Employes_Sessions" />
+          <AssociationSet Name="FK_Employes_Sessions_Employes" Association="AirAtlantiqueModel.FK_Employes_Sessions_Employes">
+            <End Role="Employe" EntitySet="Employes" />
+            <End Role="Employes_Sessions" EntitySet="Employes_Sessions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Employes_Sessions_Sessions" Association="AirAtlantiqueModel.FK_Employes_Sessions_Sessions">
+            <End Role="Session" EntitySet="Sessions" />
+            <End Role="Employes_Sessions" EntitySet="Employes_Sessions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Sessions_Formations" Association="AirAtlantiqueModel.FK_Sessions_Formations">
+            <End Role="Formation" EntitySet="Formations" />
+            <End Role="Session" EntitySet="Sessions" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Formation">
+          <Key>
+            <PropertyRef Name="idFormation" />
+          </Key>
+          <Property Name="idFormation" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nom" Type="String" MaxLength="45" FixedLength="true" Unicode="true" />
+          <NavigationProperty Name="Sessions" Relationship="AirAtlantiqueModel.FK_Sessions_Formations" FromRole="Formation" ToRole="Session" />
+        </EntityType>
+        <EntityType Name="Session">
+          <Key>
+            <PropertyRef Name="idSession" />
+          </Key>
+          <Property Name="idSession" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nom" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="date" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="duree" Type="Int32" Nullable="false" />
+          <Property Name="nbPlace" Type="Int32" />
+          <Property Name="idFormation" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Employes_Sessions" Relationship="AirAtlantiqueModel.FK_Employes_Sessions_Sessions" FromRole="Session" ToRole="Employes_Sessions" />
+          <NavigationProperty Name="Formation" Relationship="AirAtlantiqueModel.FK_Sessions_Formations" FromRole="Session" ToRole="Formation" />
+        </EntityType>
+        <EntityType Name="Employe">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nom" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
+          <Property Name="prenom" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
+          <Property Name="salaire" Type="Int32" />
+          <Property Name="dateNaissance" Type="DateTime" Precision="0" />
+          <Property Name="typeMetier" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
+          <Property Name="Metier" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
+          <NavigationProperty Name="Employes_Sessions" Relationship="AirAtlantiqueModel.FK_Employes_Sessions_Employes" FromRole="Employe" ToRole="Employes_Sessions" />
+        </EntityType>
+        <EntityType Name="Employes_Sessions">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idEmploye" Type="Int32" />
+          <Property Name="idSession" Type="Int32" />
+          <NavigationProperty Name="Employe" Relationship="AirAtlantiqueModel.FK_Employes_Sessions_Employes" FromRole="Employes_Sessions" ToRole="Employe" />
+          <NavigationProperty Name="Session" Relationship="AirAtlantiqueModel.FK_Employes_Sessions_Sessions" FromRole="Employes_Sessions" ToRole="Session" />
+        </EntityType>
+        <Association Name="FK_Employes_Sessions_Employes">
+          <End Type="AirAtlantiqueModel.Employe" Role="Employe" Multiplicity="0..1" />
+          <End Type="AirAtlantiqueModel.Employes_Sessions" Role="Employes_Sessions" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employe">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Employes_Sessions">
+              <PropertyRef Name="idEmploye" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Employes_Sessions_Sessions">
+          <End Type="AirAtlantiqueModel.Session" Role="Session" Multiplicity="0..1" />
+          <End Type="AirAtlantiqueModel.Employes_Sessions" Role="Employes_Sessions" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Session">
+              <PropertyRef Name="idSession" />
+            </Principal>
+            <Dependent Role="Employes_Sessions">
+              <PropertyRef Name="idSession" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Sessions_Formations">
+          <End Type="AirAtlantiqueModel.Formation" Role="Formation" Multiplicity="1" />
+          <End Type="AirAtlantiqueModel.Session" Role="Session" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Formation">
+              <PropertyRef Name="idFormation" />
+            </Principal>
+            <Dependent Role="Session">
+              <PropertyRef Name="idFormation" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="AirAtlantiqueModelStoreContainer" CdmEntityContainer="AirAtlantiqueDBContext">
+          <EntitySetMapping Name="Formations">
+            <EntityTypeMapping TypeName="AirAtlantiqueModel.Formation">
+              <MappingFragment StoreEntitySet="Formations">
+                <ScalarProperty Name="nom" ColumnName="nom" />
+                <ScalarProperty Name="idFormation" ColumnName="idFormation" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Sessions">
+            <EntityTypeMapping TypeName="AirAtlantiqueModel.Session">
+              <MappingFragment StoreEntitySet="Sessions">
+                <ScalarProperty Name="idFormation" ColumnName="idFormation" />
+                <ScalarProperty Name="nbPlace" ColumnName="nbPlace" />
+                <ScalarProperty Name="duree" ColumnName="duree" />
+                <ScalarProperty Name="date" ColumnName="date" />
+                <ScalarProperty Name="nom" ColumnName="nom" />
+                <ScalarProperty Name="idSession" ColumnName="idSession" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Employes">
+            <EntityTypeMapping TypeName="AirAtlantiqueModel.Employe">
+              <MappingFragment StoreEntitySet="Employes">
+                <ScalarProperty Name="Metier" ColumnName="Metier" />
+                <ScalarProperty Name="typeMetier" ColumnName="typeMetier" />
+                <ScalarProperty Name="dateNaissance" ColumnName="dateNaissance" />
+                <ScalarProperty Name="salaire" ColumnName="salaire" />
+                <ScalarProperty Name="prenom" ColumnName="prenom" />
+                <ScalarProperty Name="nom" ColumnName="nom" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Employes_Sessions">
+            <EntityTypeMapping TypeName="AirAtlantiqueModel.Employes_Sessions">
+              <MappingFragment StoreEntitySet="Employes_Sessions">
+                <ScalarProperty Name="idSession" ColumnName="idSession" />
+                <ScalarProperty Name="idEmploye" ColumnName="idEmploye" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Aucun" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
