@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data.Entity.Infrastructure;
 using System.Data.Entity.Validation;
+using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -178,7 +179,25 @@ namespace AirAtlantique
                 db.Sessions.Add(session);
                 db.SaveChanges();
 
-                LBSession.Items.Add(TBoxAjoutSess.Text);
+                try
+                {
+                    LBSession.Items.Clear();
+                    TBNbPlace.Clear();
+                    TBDuree.Clear();
+                    DPSession.Text = "";
+
+
+                    var req2 = from f in db.Formations
+                              join s in db.Sessions
+                              on f.idFormation equals s.idFormation
+                              where f.nom == LBFormation.SelectedItem.ToString()
+                              select s.nom;
+
+                    foreach (var item in req2)
+                    {
+                        LBSession.Items.Add(item);
+                    }
+                }catch (Exception){}
 
             }
             else
@@ -194,30 +213,22 @@ namespace AirAtlantique
                 MessageBoxResult messageBoxResult = System.Windows.MessageBox.Show("Etes-vous sûr de vouloir supprimer cette formation ? (Toutes les sessions associées seront supprimer)", "Delete Confirmation", System.Windows.MessageBoxButton.YesNo);
                 if (messageBoxResult == MessageBoxResult.Yes)
                 {
+                    //Regarder avec le deleteF.Remove()
 
-                        
 
-                    var req3 = from f in db.Formations
-                                where f.nom == LBFormation.SelectedItem.ToString()
-                                select f.idFormation;
+                    var deleteF = db.Formations.FirstOrDefault(f => f.nom == LBFormation.SelectedItem.ToString());
 
-                    if (db.Sessions.First(s => s.idFormation == req3.FirstOrDefault()) == )
-                    {
+                    db.Sessions.RemoveRange(db.Sessions.Where(s => s.idFormation == deleteF.idFormation));               
 
-                    }
-                    var delete2 = db.Sessions.First(s => s.idFormation == req3.FirstOrDefault());
-                    db.Sessions.Remove(delete2);
+                    db.Formations.Remove(deleteF);
                     db.SaveChanges();
                     
-                    var delete = db.Formations.First(f => f.nom == LBFormation.SelectedItem.ToString());
-
-                    db.Formations.Remove(delete);
-                    db.SaveChanges();
 
                     var req = from f in db.Formations
                                 select f.nom;
 
                     LBFormation.Items.Clear();
+
                     foreach (var item in req)
                     {
                         LBFormation.Items.Add(item);

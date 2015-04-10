@@ -1,4 +1,4 @@
-﻿// La génération de code T4 est activée pour le modèle 'C:\Users\Robin\Documents\Visual Studio 2015\Projects\AirAtlantique\AirAtlantique\AirAtlantiqueModel.edmx'. 
+﻿// La génération de code T4 est activée pour le modèle 'C:\Users\Robin\Documents\GitHub\AA-Formation\AirAtlantique\AirAtlantiqueModel.edmx'. 
 // Pour activer la génération de code héritée, définissez la valeur de la propriété
 // du concepteur 'Stratégie de génération de code' sur 'ObjectContext hérité'. Cette propriété est disponible dans la fenêtre Propriétés lorsque le modèle
 //  est ouvert dans le concepteur.
