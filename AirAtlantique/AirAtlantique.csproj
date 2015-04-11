@@ -45,6 +45,7 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -70,6 +71,9 @@
     <Compile Include="Employe.cs">
       <DependentUpon>AirAtlantiqueModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="EmployeSession.xaml.cs">
+      <DependentUpon>EmployeSession.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Employes_Sessions.cs">
       <DependentUpon>AirAtlantiqueModel.tt</DependentUpon>
     </Compile>
@@ -88,6 +92,10 @@
     <Compile Include="sysdiagram.cs">
       <DependentUpon>AirAtlantiqueModel.tt</DependentUpon>
     </Compile>
+    <Page Include="EmployeSession.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

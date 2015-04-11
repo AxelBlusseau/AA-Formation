@@ -10,6 +10,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Documents;
+//using System.Windows.Forms;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
@@ -93,18 +94,24 @@ namespace AirAtlantique
 
         private void SelectInfosSession(object sender, RoutedEventArgs e)
         {
+            LboxEmployeSession.Items.Clear();
+
             try
             {
-                var req = from s in db.Sessions
-                            where s.nom == LBSession.SelectedItem.ToString()
-                            select new { s.nom, s.date, s.duree, s.nbPlace };
+                var req = from es in db.Employes_Sessions
+                            where es.Session.nom == LBSession.SelectedItem.ToString()
+                            select new { es.Session.nom, es.Session.date, es.Session.duree, es.Session.nbPlace, es.Employe.prenom, nomEmploye = es.Employe.nom };
+
 
                 foreach (var item in req)
                 {
                     TBNbPlace.Text = item.nbPlace.ToString();
                     TBDuree.Text = item.duree.ToString();
                     DPSession.Text = item.date.ToString();
+                    LboxEmployeSession.Items.Add(item.prenom + item.nomEmploye);
+                    
                 }
+
             }
             catch (Exception) { }
 
@@ -240,5 +247,11 @@ namespace AirAtlantique
                 MessageBox.Show("Veuillez selectionner une session pour pouvoir la supprimer");
             }
         }
+
+        private void btnAjoutEmployes_Click(object sender, RoutedEventArgs e)
+        {
+            
+        }
+
     }
 }

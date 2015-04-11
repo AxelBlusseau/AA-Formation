@@ -6,6 +6,7 @@
         xmlns:local="clr-namespace:AirAtlantique"
         mc:Ignorable="d"
         Title="MainWindow" Height="631" Width="975">
+
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="702*"/>
@@ -34,6 +35,9 @@
         <Button x:Name="ButtonDeleteF" Content="Supprimer une Formation" HorizontalAlignment="Left" Height="30" Margin="245,201,0,0" VerticalAlignment="Top" Width="157" Click="ButtonDeleteF_Click"/>
         <TextBlock x:Name="textBlock1" HorizontalAlignment="Left" Height="21" Margin="10,0,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="200"><Run Text="Formations"/><Run Text=" : "/></TextBlock>
         <TextBlock x:Name="textBlock1_Copy" HorizontalAlignment="Left" Height="21" Margin="10,247,0,0" TextWrapping="Wrap" Text="Sessions :  " VerticalAlignment="Top" Width="200"/>
+        <ListBox x:Name="LboxEmployeSession" Grid.Column="1" HorizontalAlignment="Left" Height="519" Margin="0,21,0,0" VerticalAlignment="Top" Width="265"/>
+        <TextBlock x:Name="TBlockEmployeSession" HorizontalAlignment="Left" Height="21" TextWrapping="Wrap" Text="Listes des employés participant à la session : " VerticalAlignment="Top" Width="241" Grid.Column="1"/>
+        <Button x:Name="btnAjoutEmployes" Content="Ajouter des employés" Grid.Column="1" HorizontalAlignment="Left" Height="45" Margin="10,545,0,0" VerticalAlignment="Top" Width="231" Click="btnAjoutEmployes_Click"/>
 
     </Grid>
 </Window>
