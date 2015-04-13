@@ -43,6 +43,7 @@
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Data.Entity" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
     <Reference Include="System.Windows.Forms" />
@@ -63,34 +64,35 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="AirAtlantiqueModel.cs">
+    <Compile Include="AirAtlantique.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>AirAtlantiqueModel.tt</DependentUpon>
+      <DependentUpon>AirAtlantique.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AirAtlantique.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AirAtlantique.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AirAtlantique.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AirAtlantique.edmx</DependentUpon>
     </Compile>
     <Compile Include="Employe.cs">
-      <DependentUpon>AirAtlantiqueModel.tt</DependentUpon>
+      <DependentUpon>AirAtlantique.tt</DependentUpon>
     </Compile>
     <Compile Include="EmployeSession.xaml.cs">
       <DependentUpon>EmployeSession.xaml</DependentUpon>
     </Compile>
     <Compile Include="Employes_Sessions.cs">
-      <DependentUpon>AirAtlantiqueModel.tt</DependentUpon>
+      <DependentUpon>AirAtlantique.tt</DependentUpon>
     </Compile>
     <Compile Include="Formation.cs">
-      <DependentUpon>AirAtlantiqueModel.tt</DependentUpon>
+      <DependentUpon>AirAtlantique.tt</DependentUpon>
     </Compile>
     <Compile Include="Session.cs">
-      <DependentUpon>AirAtlantiqueModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="sp_helpdiagramdefinition_Result.cs">
-      <DependentUpon>AirAtlantiqueModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="sp_helpdiagrams_Result.cs">
-      <DependentUpon>AirAtlantiqueModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="sysdiagram.cs">
-      <DependentUpon>AirAtlantiqueModel.tt</DependentUpon>
+      <DependentUpon>AirAtlantique.tt</DependentUpon>
     </Compile>
     <Page Include="EmployeSession.xaml">
       <SubType>Designer</SubType>
@@ -100,16 +102,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Compile Include="AirAtlantiqueModel.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>AirAtlantiqueModel.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="AirAtlantiqueModel.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>AirAtlantiqueModel.edmx</DependentUpon>
-    </Compile>
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -137,12 +129,22 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EntityDeploy Include="AirAtlantiqueModel.edmx">
+    <EntityDeploy Include="AirAtlantique.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>AirAtlantiqueModel.Designer.cs</LastGenOutput>
+      <LastGenOutput>AirAtlantique.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <None Include="AirAtlantiqueModel.edmx.diagram">
-      <DependentUpon>AirAtlantiqueModel.edmx</DependentUpon>
+    <None Include="AirAtlantique.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>AirAtlantique.edmx</DependentUpon>
+      <LastGenOutput>AirAtlantique.Context.cs</LastGenOutput>
+    </None>
+    <None Include="AirAtlantique.edmx.diagram">
+      <DependentUpon>AirAtlantique.edmx</DependentUpon>
+    </None>
+    <None Include="AirAtlantique.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>AirAtlantique.edmx</DependentUpon>
+      <LastGenOutput>AirAtlantique.cs</LastGenOutput>
     </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
@@ -158,18 +160,6 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="AirAtlantiqueModel.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>AirAtlantiqueModel.edmx</DependentUpon>
-      <LastGenOutput>AirAtlantiqueModel.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="AirAtlantiqueModel.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>AirAtlantiqueModel.edmx</DependentUpon>
-      <LastGenOutput>AirAtlantiqueModel.cs</LastGenOutput>
-    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

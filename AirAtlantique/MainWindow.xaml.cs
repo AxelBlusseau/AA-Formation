@@ -100,6 +100,7 @@ namespace AirAtlantique
             {
                 var req = from es in db.Employes_Sessions
                             where es.Session.nom == LBSession.SelectedItem.ToString()
+                            orderby es.Employe.nom
                             select new { es.Session.nom, es.Session.date, es.Session.duree, es.Session.nbPlace, es.Employe.prenom, nomEmploye = es.Employe.nom };
 
 
@@ -108,7 +109,7 @@ namespace AirAtlantique
                     TBNbPlace.Text = item.nbPlace.ToString();
                     TBDuree.Text = item.duree.ToString();
                     DPSession.Text = item.date.ToString();
-                    LboxEmployeSession.Items.Add(item.prenom + item.nomEmploye);
+                    LboxEmployeSession.Items.Add(item.nomEmploye + item.prenom);
                     
                 }
 
@@ -248,8 +249,35 @@ namespace AirAtlantique
             }
         }
 
+        static public int envoi;
+
         private void btnAjoutEmployes_Click(object sender, RoutedEventArgs e)
         {
+
+            if (LBSession.SelectedIndex >= 0)
+            {
+                var req = from s in db.Sessions
+                      where s.nom == LBSession.SelectedItem.ToString()
+                      select s.idSession;
+
+                envoi = req.First();
+
+                Window fenetre = new EmployeSession();
+                fenetre.ShowDialog();
+
+                LboxEmployeSession.Items.Clear();
+
+                var reqMaj = from es in db.Employes_Sessions
+                          where es.Session.nom == LBSession.SelectedItem.ToString()
+                          orderby es.Employe.nom
+                          select new { es.Employe.prenom, es.Employe.nom };
+
+
+                foreach (var item in reqMaj)
+                {
+                    LboxEmployeSession.Items.Add(item.nom + item.prenom);
+                }
+            }
             
         }
 
