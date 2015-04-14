@@ -57,8 +57,18 @@ namespace AirAtlantique
 
         private void btnAjoutEmploye_Click(object sender, RoutedEventArgs e)
         {
-            if (LBoxEmploye.SelectedIndex >= 0)
+            var recup = MainWindow.envoi;
+            var reqTS = from s in db.Sessions
+                        where s.idSession == recup
+                        select s.nbPlace;
+
+            if (int.Parse(LBoxEmployeSession.Items.Count.ToString()) >= reqTS.First())
             {
+                MessageBox.Show("Le nombre max d'employés pour cette session est atteint");
+
+            }
+            else if (LBoxEmploye.SelectedIndex >= 0)
+            {             
                 LBoxEmployeSession.Items.Add(LBoxEmploye.SelectedItem);
 
                 LBoxEmployeSession.Items.SortDescriptions.Add(new SortDescription("nom",

@@ -4,30 +4,12 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="AirAtlantiqueModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-        <EntityContainer Name="AirAtlantiqueModelStoreContainer">
-          <EntitySet Name="Employes" EntityType="AirAtlantiqueModel.Store.Employes" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="Employes_Sessions" EntityType="AirAtlantiqueModel.Store.Employes_Sessions" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="Formations" EntityType="AirAtlantiqueModel.Store.Formations" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="Sessions" EntityType="AirAtlantiqueModel.Store.Sessions" store:Type="Tables" Schema="dbo" />
-          <AssociationSet Name="FK_Employes_Sessions_Employes" Association="AirAtlantiqueModel.Store.FK_Employes_Sessions_Employes">
-            <End Role="Employes" EntitySet="Employes" />
-            <End Role="Employes_Sessions" EntitySet="Employes_Sessions" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Employes_Sessions_Sessions" Association="AirAtlantiqueModel.Store.FK_Employes_Sessions_Sessions">
-            <End Role="Sessions" EntitySet="Sessions" />
-            <End Role="Employes_Sessions" EntitySet="Employes_Sessions" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Sessions_Formations" Association="AirAtlantiqueModel.Store.FK_Sessions_Formations">
-            <End Role="Formations" EntitySet="Formations" />
-            <End Role="Sessions" EntitySet="Sessions" />
-          </AssociationSet>
-        </EntityContainer>
+    <Schema Namespace="AirAtlantiqueModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Employes">
           <Key>
             <PropertyRef Name="id" />
           </Key>
-          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="nom" Type="nchar" MaxLength="20" />
           <Property Name="prenom" Type="nchar" MaxLength="20" />
           <Property Name="salaire" Type="int" />
@@ -39,7 +21,7 @@
           <Key>
             <PropertyRef Name="id" />
           </Key>
-          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="idEmploye" Type="int" />
           <Property Name="idSession" Type="int" />
         </EntityType>
@@ -47,23 +29,23 @@
           <Key>
             <PropertyRef Name="idFormation" />
           </Key>
-          <Property Name="idFormation" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="idFormation" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="nom" Type="nchar" MaxLength="45" />
         </EntityType>
         <EntityType Name="Sessions">
           <Key>
             <PropertyRef Name="idSession" />
           </Key>
-          <Property Name="idSession" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-          <Property Name="nom" Type="nchar" Nullable="false" MaxLength="10" />
+          <Property Name="idSession" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nom" Type="nchar" MaxLength="10" Nullable="false" />
           <Property Name="date" Type="date" Nullable="false" />
           <Property Name="duree" Type="int" Nullable="false" />
           <Property Name="nbPlace" Type="int" />
           <Property Name="idFormation" Type="int" Nullable="false" />
         </EntityType>
         <Association Name="FK_Employes_Sessions_Employes">
-          <End Role="Employes" Type="AirAtlantiqueModel.Store.Employes" Multiplicity="0..1" />
-          <End Role="Employes_Sessions" Type="AirAtlantiqueModel.Store.Employes_Sessions" Multiplicity="*" />
+          <End Role="Employes" Type="Self.Employes" Multiplicity="0..1" />
+          <End Role="Employes_Sessions" Type="Self.Employes_Sessions" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Employes">
               <PropertyRef Name="id" />
@@ -74,8 +56,10 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Employes_Sessions_Sessions">
-          <End Role="Sessions" Type="AirAtlantiqueModel.Store.Sessions" Multiplicity="0..1" />
-          <End Role="Employes_Sessions" Type="AirAtlantiqueModel.Store.Employes_Sessions" Multiplicity="*" />
+          <End Role="Sessions" Type="Self.Sessions" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Employes_Sessions" Type="Self.Employes_Sessions" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Sessions">
               <PropertyRef Name="idSession" />
@@ -86,10 +70,10 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Sessions_Formations">
-          <End Role="Formations" Type="AirAtlantiqueModel.Store.Formations" Multiplicity="1">
+          <End Role="Formations" Type="Self.Formations" Multiplicity="1">
             <OnDelete Action="Cascade" />
           </End>
-          <End Role="Sessions" Type="AirAtlantiqueModel.Store.Sessions" Multiplicity="*" />
+          <End Role="Sessions" Type="Self.Sessions" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Formations">
               <PropertyRef Name="idFormation" />
@@ -99,8 +83,25 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-      </Schema>
-    </edmx:StorageModels>
+        <EntityContainer Name="AirAtlantiqueModelStoreContainer">
+          <EntitySet Name="Employes" EntityType="Self.Employes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Employes_Sessions" EntityType="Self.Employes_Sessions" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Formations" EntityType="Self.Formations" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Sessions" EntityType="Self.Sessions" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Employes_Sessions_Employes" Association="Self.FK_Employes_Sessions_Employes">
+            <End Role="Employes" EntitySet="Employes" />
+            <End Role="Employes_Sessions" EntitySet="Employes_Sessions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Employes_Sessions_Sessions" Association="Self.FK_Employes_Sessions_Sessions">
+            <End Role="Sessions" EntitySet="Sessions" />
+            <End Role="Employes_Sessions" EntitySet="Employes_Sessions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Sessions_Formations" Association="Self.FK_Sessions_Formations">
+            <End Role="Formations" EntitySet="Formations" />
+            <End Role="Sessions" EntitySet="Sessions" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="AirAtlantiqueModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -266,9 +267,10 @@
     <Options>
       <DesignerInfoPropertySet>
         <DesignerProperty Name="ValidateOnBuild" Value="true" />
-        <DesignerProperty Name="EnablePluralization" Value="False" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
         <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
         <DesignerProperty Name="CodeGenerationStrategy" Value="Aucun" />
+        <DesignerProperty Name="UseLegacyProvider" Value="True" />
       </DesignerInfoPropertySet>
     </Options>
     <!-- Diagram content (shape and connector positions) -->

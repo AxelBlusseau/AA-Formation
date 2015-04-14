@@ -98,19 +98,25 @@ namespace AirAtlantique
 
             try
             {
-                var req = from es in db.Employes_Sessions
-                            where es.Session.nom == LBSession.SelectedItem.ToString()
-                            orderby es.Employe.nom
-                            select new { es.Session.nom, es.Session.date, es.Session.duree, es.Session.nbPlace, es.Employe.prenom, nomEmploye = es.Employe.nom };
+                var req = from es in db.Sessions
+                      where es.nom == LBSession.SelectedItem.ToString()
+                            select new { es.nom, es.date, es.duree, es.nbPlace };
 
+                var req2 = from es in db.Employes_Sessions
+                       where es.Session.nom == LBSession.SelectedItem.ToString()
+                       orderby es.Employe.nom
+                       select new { es.Employe.prenom, es.Employe.nom };
 
                 foreach (var item in req)
                 {
                     TBNbPlace.Text = item.nbPlace.ToString();
                     TBDuree.Text = item.duree.ToString();
-                    DPSession.Text = item.date.ToString();
-                    LboxEmployeSession.Items.Add(item.nomEmploye + item.prenom);
-                    
+                    DPSession.Text = item.date.ToString();              
+                }
+
+                foreach (var item in req2)
+                {
+                    LboxEmployeSession.Items.Add(item.nom + item.prenom);
                 }
 
             }
@@ -215,18 +221,13 @@ namespace AirAtlantique
         private void ButtonDeleteF_Click(object sender, RoutedEventArgs e)
         {
 
-
             if (LBFormation.SelectedIndex >= 0)
             {
                 MessageBoxResult messageBoxResult = System.Windows.MessageBox.Show("Etes-vous sûr de vouloir supprimer cette formation ? (Toutes les sessions associées seront supprimer)", "Delete Confirmation", System.Windows.MessageBoxButton.YesNo);
                 if (messageBoxResult == MessageBoxResult.Yes)
                 {
-                    //Regarder avec le deleteF.Remove()
-
 
                     var deleteF = db.Formations.FirstOrDefault(f => f.nom == LBFormation.SelectedItem.ToString());
-
-                    db.Sessions.RemoveRange(db.Sessions.Where(s => s.idFormation == deleteF.idFormation));               
 
                     db.Formations.Remove(deleteF);
                     db.SaveChanges();
