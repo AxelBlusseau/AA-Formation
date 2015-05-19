@@ -35,8 +35,8 @@
         <Button x:Name="ButtonDeleteF" Content="Supprimer une Formation" HorizontalAlignment="Left" Height="30" Margin="245,201,0,0" VerticalAlignment="Top" Width="157" Click="ButtonDeleteF_Click"/>
         <TextBlock x:Name="textBlock1" HorizontalAlignment="Left" Height="21" Margin="10,0,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="200"><Run Text="Formations"/><Run Text=" : "/></TextBlock>
         <TextBlock x:Name="textBlock1_Copy" HorizontalAlignment="Left" Height="21" Margin="10,247,0,0" TextWrapping="Wrap" Text="Sessions :  " VerticalAlignment="Top" Width="200"/>
-        <ListBox x:Name="LboxEmployeSession" Grid.Column="1" HorizontalAlignment="Left" Height="519" Margin="0,21,0,0" VerticalAlignment="Top" Width="265"/>
-        <TextBlock x:Name="TBlockEmployeSession" HorizontalAlignment="Left" Height="21" TextWrapping="Wrap" Text="Listes des employés participant à la session : " VerticalAlignment="Top" Width="241" Grid.Column="1"/>
+        <ListBox x:Name="LboxEmployeSession" HorizontalAlignment="Left" Height="519" Margin="692,26,0,0" VerticalAlignment="Top" Width="265" Grid.ColumnSpan="2"/>
+        <TextBlock x:Name="TBlockEmployeSession" HorizontalAlignment="Left" Height="21" TextWrapping="Wrap" Text="Liste des employés participants à la session : " VerticalAlignment="Top" Width="241" Grid.ColumnSpan="2" Margin="692,5,0,0"/>
         <Button x:Name="btnAjoutEmployes" Content="Ajouter des employés" Grid.Column="1" HorizontalAlignment="Left" Height="45" Margin="10,545,0,0" VerticalAlignment="Top" Width="231" Click="btnAjoutEmployes_Click"/>
 
     </Grid>
