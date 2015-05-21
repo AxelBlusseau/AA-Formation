@@ -5,13 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:AirAtlantique"
         mc:Ignorable="d"
-        Title="EmployeSession" Height="464.574" Width="479.468">
-    <Grid Margin="0,0,-8,5">
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="233*"/>
-            <ColumnDefinition Width="120*"/>
-        </Grid.ColumnDefinitions>
-        <ListBox x:Name="LBoxEmploye" Height="360" Margin="10,32,149,0" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5">
+        Title="EmployeSession" Height="464.574" Width="653.468">
+    <Grid Margin="0,0,3.667,5.333">
+        <ListBox x:Name="LBoxEmploye" Height="360" Margin="10,32,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5" HorizontalAlignment="Left" Width="196">
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <StackPanel Orientation="Horizontal">
@@ -21,7 +17,7 @@
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>
-        <ListBox x:Name="LBoxEmployeSession" HorizontalAlignment="Left" Height="365" Margin="302,32,0,0" VerticalAlignment="Top" Width="164" Grid.ColumnSpan="2">
+        <ListBox x:Name="LBoxEmployeSession" Height="365" Margin="409,32,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="202">
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <StackPanel Orientation="Horizontal">
@@ -32,9 +28,9 @@
             </ListBox.ItemTemplate>
         </ListBox>
         <TextBlock x:Name="TblockEmploye" HorizontalAlignment="Left" Height="22" Margin="10,10,0,0" TextWrapping="Wrap" Text="Liste des employés" VerticalAlignment="Top" Width="139"/>
-        <TextBlock x:Name="TblockEmployeSession" HorizontalAlignment="Left" Height="31" Margin="10,-4,0,0" TextWrapping="Wrap" Text="Liste des employés de la session" VerticalAlignment="Top" Width="110" Grid.Column="1"/>
-        <Button x:Name="btnAjoutEmploye" Content=">>" HorizontalAlignment="Left" Height="33" Margin="211,142,0,0" VerticalAlignment="Top" Width="41" Click="btnAjoutEmploye_Click"/>
-        <Button x:Name="btnDelEmploye" Content="&lt;&lt;" HorizontalAlignment="Left" Height="33" Margin="211,180,0,0" VerticalAlignment="Top" Width="41" Click="btnDelEmploye_Click"/>
-        <Button x:Name="btnSave" Content="Sauvegarder" HorizontalAlignment="Left" Height="32" Margin="172,338,0,0" VerticalAlignment="Top" Width="125" Click="btnSave_Click"/>
+        <TextBlock x:Name="TblockEmployeSession" HorizontalAlignment="Left" Height="31" Margin="409,10,0,0" TextWrapping="Wrap" Text="Liste des employés de la session" VerticalAlignment="Top" Width="184"/>
+        <Button x:Name="btnAjoutEmploye" Content=">>" HorizontalAlignment="Left" Height="33" Margin="285,89,0,0" VerticalAlignment="Top" Width="41" Click="btnAjoutEmploye_Click"/>
+        <Button x:Name="btnDelEmploye" Content="&lt;&lt;" HorizontalAlignment="Left" Height="33" Margin="285,150,0,0" VerticalAlignment="Top" Width="41" Click="btnDelEmploye_Click"/>
+        <Button x:Name="btnSave" Content="Sauvegarder" HorizontalAlignment="Left" Height="32" Margin="245,247,0,0" VerticalAlignment="Top" Width="125" Click="btnSave_Click"/>
     </Grid>
 </Window>

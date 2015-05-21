@@ -23,5 +23,11 @@ namespace AirAtlantique
         public string nom { get; set; }
     
         public virtual ICollection<Session> Sessions { get; set; }
+        public void SelectF(){
+            var req = from f in db.Formations select f.nom;
+        }
+
     }
+
+    
 }

@@ -5,39 +5,43 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:AirAtlantique"
         mc:Ignorable="d"
-        Title="MainWindow" Height="631" Width="975">
+        Title="MainWindow" Height="631" Width="982.667">
 
     <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="702*"/>
-            <ColumnDefinition Width="265*"/>
-        </Grid.ColumnDefinitions>
+        <Rectangle Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="301" Margin="229,289,0,0" Stroke="Black" VerticalAlignment="Top" Width="227"/>
+
+        <Rectangle Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="310" Margin="480,21,0,0" Stroke="Black" VerticalAlignment="Top" Width="196"/>
+
+        <Rectangle Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="240" Margin="229,21,0,0" Stroke="Black" VerticalAlignment="Top" Width="227"/>
         <ListBox x:Name="LBFormation" HorizontalAlignment="Left" Height="210" Margin="10,21,0,0" VerticalAlignment="Top" Width="200" SelectionChanged="SelectSession"/>
-        <ListBox x:Name="LBSession" HorizontalAlignment="Left" Height="322" Margin="10,268,0,0" VerticalAlignment="Top" Width="200" SelectionChanged="SelectInfosSession"/>
-        <TextBox x:Name="TBAjoutF" HorizontalAlignment="Left" Height="24" Margin="245,39,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="155" MaxLength="45"/>
-        <Button x:Name="ButtonAjoutF" Content="Ajouter une Formation" HorizontalAlignment="Left" Height="30" Margin="245,154,0,0" VerticalAlignment="Top" Width="157" Click="AjoutF_Click"/>
-        <DatePicker x:Name="DPSession" HorizontalAlignment="Left" Height="28" Margin="245,324,0,0" VerticalAlignment="Top" Width="155"/>
-        <TextBox x:Name="TBNbPlace" HorizontalAlignment="Left" Height="24" Margin="245,286,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="157"/>
-        <TextBox x:Name="TBDuree" HorizontalAlignment="Left" Height="26" Margin="245,382,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="155"/>
-        <TextBlock x:Name="textBlock" HorizontalAlignment="Left" Height="18" Margin="243,21,0,0" TextWrapping="Wrap" Text="Nom de la formation" VerticalAlignment="Top" Width="157"/>
-        <TextBlock x:Name="textBlock2" HorizontalAlignment="Left" Height="18" Margin="243,268,0,0" TextWrapping="Wrap" Text="Nombre de places" VerticalAlignment="Top" Width="159"/>
-        <TextBlock x:Name="textBlock3" HorizontalAlignment="Left" Height="16" Margin="245,366,0,0" TextWrapping="Wrap" Text="Durée en jour(s)" VerticalAlignment="Top" Width="155"/>
-        <Button x:Name="btnModif" Content="Mettre à jour" HorizontalAlignment="Left" Height="30" Margin="245,430,0,0" VerticalAlignment="Top" Width="157" Click="btnModif_Click"/>
-        <Button x:Name="btnDelete" Content="Supprimer" HorizontalAlignment="Left" Height="30" Margin="245,484,0,0" VerticalAlignment="Top" Width="157" Click="btnDelete_Click"/>
-        <DatePicker x:Name="DPAjoutSession" HorizontalAlignment="Left" Height="27" Margin="491,108,0,0" VerticalAlignment="Top" Width="157"/>
-        <TextBox x:Name="TBoxAjoutNbPlace" HorizontalAlignment="Left" Height="24" Margin="493,71,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="157"/>
-        <TextBox x:Name="TBoxAjoutDuree" HorizontalAlignment="Left" Height="25" Margin="491,159,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="157"/>
-        <TextBlock x:Name="TBlockAjoutnbPlace" HorizontalAlignment="Left" Height="17" Margin="493,54,0,0" TextWrapping="Wrap" Text="Nombre de places" VerticalAlignment="Top" Width="155"/>
-        <TextBlock x:Name="TBlockAjoutDuree" HorizontalAlignment="Left" Height="18" Margin="491,141,0,0" TextWrapping="Wrap" Text="Durée en jour(s)" VerticalAlignment="Top" Width="157"/>
-        <Button x:Name="btnAjoutSess" Content="Créer Session" HorizontalAlignment="Left" Height="30" Margin="491,201,0,0" VerticalAlignment="Top" Width="157" Click="btnAjoutSess_Click" RenderTransformOrigin="-0.478,2.3"/>
-        <TextBox x:Name="TBoxAjoutSess" HorizontalAlignment="Left" Height="23" Margin="491,31,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="157" MaxLength="10"/>
-        <TextBlock x:Name="TBlockAjoutSess" HorizontalAlignment="Left" Height="18" Margin="491,13,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="157"><Run Text="Nom de la "/><Run Text="session"/></TextBlock>
-        <Button x:Name="ButtonDeleteF" Content="Supprimer une Formation" HorizontalAlignment="Left" Height="30" Margin="245,201,0,0" VerticalAlignment="Top" Width="157" Click="ButtonDeleteF_Click"/>
+        <ListBox x:Name="LBSession" HorizontalAlignment="Left" Height="315" Margin="10,268,0,0" VerticalAlignment="Top" Width="200" SelectionChanged="SelectInfosSession"/>
+        <TextBox x:Name="TBAjoutF" HorizontalAlignment="Left" Height="24" Margin="263,91,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="155" MaxLength="45"/>
+        <Button x:Name="ButtonAjoutF" Content="Ajouter une Formation" HorizontalAlignment="Left" Height="30" Margin="261,164,0,0" VerticalAlignment="Top" Width="157" Click="AjoutF_Click"/>
+        <DatePicker x:Name="DPSession" HorizontalAlignment="Left" Height="28" Margin="261,403,0,0" VerticalAlignment="Top" Width="153"/>
+        <TextBox x:Name="TBNbPlace" HorizontalAlignment="Left" Height="24" Margin="257,353,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="157"/>
+        <TextBox x:Name="TBDuree" HorizontalAlignment="Left" Height="26" Margin="259,461,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="159"/>
+        <TextBlock x:Name="textBlock" HorizontalAlignment="Left" Height="18" Margin="263,68,0,0" TextWrapping="Wrap" Text="Nom de la formation" VerticalAlignment="Top" Width="155"/>
+        <TextBlock x:Name="textBlock2" HorizontalAlignment="Left" Height="18" Margin="259,335,0,0" TextWrapping="Wrap" Text="Nombre de places" VerticalAlignment="Top" Width="159" RenderTransformOrigin="0.5,0.5"/>
+        <TextBlock x:Name="textBlock3" HorizontalAlignment="Left" Height="16" Margin="261,445,0,0" TextWrapping="Wrap" Text="Durée en jour(s)" VerticalAlignment="Top" Width="155"/>
+        <Button x:Name="btnModif" Content="Mettre à jour" HorizontalAlignment="Left" Height="30" Margin="261,510,0,0" VerticalAlignment="Top" Width="157" Click="btnModif_Click"/>
+        <Button x:Name="btnDelete" Content="Supprimer" HorizontalAlignment="Left" Height="30" Margin="261,553,0,0" VerticalAlignment="Top" Width="157" Click="btnDelete_Click"/>
+        <DatePicker x:Name="DPAjoutSession" HorizontalAlignment="Left" Height="27" Margin="498,177,0,0" VerticalAlignment="Top" Width="157"/>
+        <TextBox x:Name="TBoxAjoutNbPlace" HorizontalAlignment="Left" Height="24" Margin="498,142,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="157"/>
+        <TextBox x:Name="TBoxAjoutDuree" HorizontalAlignment="Left" Height="25" Margin="498,243,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="157"/>
+        <TextBlock x:Name="TBlockAjoutnbPlace" HorizontalAlignment="Left" Height="17" Margin="498,120,0,0" TextWrapping="Wrap" Text="Nombre de places" VerticalAlignment="Top" Width="155"/>
+        <TextBlock x:Name="TBlockAjoutDuree" HorizontalAlignment="Left" Height="18" Margin="498,222,0,0" TextWrapping="Wrap" Text="Durée en jour(s)" VerticalAlignment="Top" Width="157"/>
+        <Button x:Name="btnAjoutSess" Content="Créer Session" HorizontalAlignment="Left" Height="30" Margin="498,290,0,0" VerticalAlignment="Top" Width="157" Click="btnAjoutSess_Click" RenderTransformOrigin="-0.478,2.3"/>
+        <TextBox x:Name="TBoxAjoutSess" HorizontalAlignment="Left" Height="23" Margin="498,77,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="157" MaxLength="10"/>
+        <TextBlock x:Name="TBlockAjoutSess" HorizontalAlignment="Left" Height="18" Margin="498,59,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="157"><Run Text="Nom de la "/><Run Text="session"/></TextBlock>
+        <Button x:Name="ButtonDeleteF" Content="Supprimer une Formation" HorizontalAlignment="Left" Height="30" Margin="261,210,0,0" VerticalAlignment="Top" Width="157" Click="ButtonDeleteF_Click"/>
         <TextBlock x:Name="textBlock1" HorizontalAlignment="Left" Height="21" Margin="10,0,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="200"><Run Text="Formations"/><Run Text=" : "/></TextBlock>
         <TextBlock x:Name="textBlock1_Copy" HorizontalAlignment="Left" Height="21" Margin="10,247,0,0" TextWrapping="Wrap" Text="Sessions :  " VerticalAlignment="Top" Width="200"/>
-        <ListBox x:Name="LboxEmployeSession" HorizontalAlignment="Left" Height="519" Margin="692,26,0,0" VerticalAlignment="Top" Width="265" Grid.ColumnSpan="2"/>
-        <TextBlock x:Name="TBlockEmployeSession" HorizontalAlignment="Left" Height="21" TextWrapping="Wrap" Text="Liste des employés participants à la session : " VerticalAlignment="Top" Width="241" Grid.ColumnSpan="2" Margin="692,5,0,0"/>
-        <Button x:Name="btnAjoutEmployes" Content="Ajouter des employés" Grid.Column="1" HorizontalAlignment="Left" Height="45" Margin="10,545,0,0" VerticalAlignment="Top" Width="231" Click="btnAjoutEmployes_Click"/>
+        <ListBox x:Name="LboxEmployeSession" HorizontalAlignment="Left" Height="519" Margin="701,21,0,0" VerticalAlignment="Top" Width="265"/>
+        <TextBlock x:Name="TBlockEmployeSession" HorizontalAlignment="Left" Height="21" TextWrapping="Wrap" Text="Liste des employés participants à la session : " VerticalAlignment="Top" Width="241" Margin="701,0,0,0"/>
+        <Button x:Name="btnAjoutEmployes" Content="Ajouter des employés" HorizontalAlignment="Left" Height="45" Margin="701,546,0,0" VerticalAlignment="Top" Width="265" Click="btnAjoutEmployes_Click"/>
+        <Label Content="AJOUTER UNE FORMATION" HorizontalAlignment="Left" Height="28" Margin="243,21,0,0" VerticalAlignment="Top" Width="213" FontSize="15" FontWeight="Bold"/>
+        <Label Content="AJOUTER UNE SESSION" HorizontalAlignment="Left" Height="27" Margin="491,22,0,0" VerticalAlignment="Top" Width="185" FontWeight="Bold" FontSize="15"/>
+        <Label Content="MODIFIER UNE SESSION" HorizontalAlignment="Left" Height="27" Margin="243,290,0,0" VerticalAlignment="Top" Width="185" FontWeight="Bold" FontSize="15"/>
 
     </Grid>
 </Window>
